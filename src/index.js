@@ -1,7 +1,117 @@
-//  Product_More Quantily Plus or Minass
-if(document.querySelector(".buy_input")){
-    console.log(document.querySelector(".buy_input"));
+// Show comment Plus
+const review_code = document.querySelector('.review_codeid');
+function showComment(data){
+    const storage = localStorage.getItem('comment');
+    cart_data= JSON.parse(storage);
+    let review_ql = 0;
+    if(storage){
+        cart_data= JSON.parse(storage);
+        s='';
+        cart_data.map((item)=>{
+            if(item.product.id === data){
+                review_ql = review_ql+1;
+                s+=`<div class="review_bid" style="padding: 20px 0px 30px 20px;">
+                        <span class="color-change ">
+                                <i class="fa-solid fa-star font_sm"></i>
+                                <i class="fa-solid fa-star font_sm"></i>
+                                <i class="fa-solid fa-star font_sm"></i>
+                                <i class="fa-solid fa-star font_sm"></i>
+                                <i class="fa-solid fa-star font_sm"></i>
+                            </span>
+                        <div class="Reviews_tlt fst-italic ">${item.product.name} on ${item.timeUp}</div>
+                        <div class="Reviews_cnt_tlt">${item.product.title}</div>
+                        <p class="Reviews_cnt" style="word-wrap: break-word;">${item.product.content}</p>
+                    </div>
+                    `;
+            }
+        })
+        document.querySelector('.Reviews_grapp').innerHTML = s;  
+        document.querySelectorAll('.content-main-view_ql').forEach((c) => {
+            c.innerHTML =review_ql;
+        })
+    }
 }
+if(review_code){
+showComment(review_code.innerHTML)
+}
+// Handle Comment 
+let Comment_hd =[];
+if(document.querySelector('#form_review')){
+    validate('#form_review');
+}
+function review_handle(data){
+        function requireds(rules,value){
+            if(rules === ''){
+                return '';
+            }
+            if(rules === 'email'){
+                if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)){
+                    return '';
+                }else{
+                    return 'This is not email';  
+                }
+            }
+            if(rules.split(":")){
+                var min = rules.split(":");
+                if(value.length < min[1]){
+                        return 'Enter at least '+min[1]+' characters';
+                    }else{
+                        return '' ;
+                    }
+            }
+        }
+
+        var validates = {
+            required: function(value,rules){
+                return value ? requireds(rules,value) :"Please enter this field";
+            }
+        }
+
+        inputs.forEach(function(input){
+            var rules = input.getAttribute('rules');
+            message = input.parentElement.querySelector('.message');
+            message.innerHTML =validates.required(input.value,rules)
+        })
+
+        messages = document.querySelectorAll('.message');
+            var check = true;
+            messages.forEach(function(e){
+                if(e.innerHTML !== ''){
+                    check = false;
+                    return 1;
+                }
+            })
+            if(check){
+                const review_name   =document.querySelector('.review_name')
+                const review_email   =document.querySelector('.review_email')
+                const review_title   =document.querySelector('.review_title')
+                const review_content   =document.querySelector('.review_content')
+                let storage = localStorage.getItem('comment');
+                let Product_Comment = {
+                    id:data,
+                    name: review_name.value,
+                    email: review_email.value,
+                    title: review_title.value,
+                    content: review_content.value,
+                }
+
+                if(storage){
+                    Comment_hd = JSON.parse(storage);
+                }
+                Comment_hd.push({product:Product_Comment, timeUp: new Date(),});
+                localStorage.setItem('comment',JSON.stringify(Comment_hd));
+                showComment(data);
+                review_name.value="";
+                review_email.value="";
+                review_title.value="";
+                review_content.value="";
+                alert("thank you for review");
+            }
+        }
+    
+
+//  Product_More Quantily Plus or Minass
+
 function addMinasCart(data){
     const  text  = document.querySelectorAll(".buy_input") ;
     text.forEach(function(item){
@@ -22,6 +132,7 @@ function addMinasCart(data){
                 })
                 localStorage.setItem('cart',JSON.stringify(CartAraay));
                 showCart();
+                showCart_view();
             }
         }
     })
@@ -39,6 +150,7 @@ function addPlusCart(data){
     })
     localStorage.setItem('cart',JSON.stringify(CartAraay));
     showCart();
+    showCart_view();
 }
 
 //  CART Quantily Plus or Minass
@@ -54,7 +166,53 @@ function addMinas(){
     const  buy_input2  = document.querySelector(".buy_input2") ;
     buy_input2.value = Number(buy_input2.value) + 1;
 }
+// Show revier_cart
 
+var CartAraay_view = [];
+function showCart_view(){
+    const storage = localStorage.getItem('cart');
+    if(storage){
+        cart_data= JSON.parse(storage);
+        const quantity = cart_data.reduce(function(start,item){
+                return Number(start) + (Number(item.product.price)*Number(item.quantity));
+        },0)
+        s='';
+        console.log(cart_data);
+        if( cart_data.length === 0){
+            s+='<div class="fs-3 text-center" style="padding:70px 0px"> Chưa Có sản phẩm nào được thêm </div>'
+        }
+        else{
+
+            cart_data.map((item)=>{
+            s+=
+                `
+                <div class="col-lg-2 boxxx">
+                    <img style=" border-radius:5px; border:1px solid #ececec" width="80%" src="${item.product.img}" alt="">
+                </div>
+                <div class="col-lg-3 boxxx">
+                    <div class="" style="font-size:24px; font-weight:500;">${item.product.band} - ${item.product.name}</div>
+                    <button onclick=Remove_cart("${item.product.id}") class="buttonn mt-1  ms-5">Remove</button>
+                </div>
+                <div class="col-lg-3 boxxx fs-4 fw-bold">$${item.product.price}.00</div>
+                <div class="col-lg-2 boxxx">
+                <div class="content-more-quantity-number"> 
+                                <div onclick=addMinasCart("${item.product.id}")  class="content-more-op content-more-op-minus " style="line-height: 3.9px;">-</div>  
+                                <input type="text" disabled="disabled" id="quantity" value="${item.quantity}"  class="widht_sml buy_input view_cart_w">
+                                <div  onclick=addPlusCart("${item.product.id}")  class="content-more-op content-more-op_plus "   style="line-height: 3.9px;">+</div> 
+                            </div>
+                </div>
+                <div class="col-lg-2 boxxx">$${item.quantity * item.product.price}.00</div>    
+             `;
+            })
+        }
+        document.querySelector('.cart_view_grap_bd').innerHTML = s;
+        document.querySelector('#cart_price_view').innerHTML = "$"+quantity+".00 USD";
+    }
+}
+// showCart();
+if(document.querySelector('.cart_view_grap_bd')){
+showCart_view()
+}
 //  SHOW CART 
 var CartAraay = [];
 function showCart(){
@@ -77,7 +235,7 @@ function showCart(){
                     <div class="main_flex">
                         <div class="content-more-quantity-number"> 
                             <div onclick=addMinasCart("${item.product.id}") class="content-more-op content-more-op-minus">-</div>  
-                            <input type="text" data="${item.product.id}" id="quantity" value="${item.quantity}" class="widht_sml buy_input">
+                            <input type="text" disabled="disabled" data="${item.product.id}" id="quantity" value="${item.quantity}" class="widht_sml buy_input">
                             <div  onclick=addPlusCart("${item.product.id}") class="content-more-op content-more-op_plus">+</div> 
                         </div>
                         <button onclick=Remove_cart("${item.product.id}") class="buttonn">Remove</button>
@@ -106,6 +264,7 @@ function Remove_cart(code_id){
 
     localStorage.setItem('cart',JSON.stringify(Cart));
     showCart();
+    showCart_view();
     alert("Product "+code_id+ " has been deleted in the cart");
 
 }
@@ -140,8 +299,13 @@ function addCart(data,price){
 
 //   Product_More Write review or question
 function write_review(){
-    document.querySelector('.write-Question').style.display="none";
-    document.querySelector('.write-review').style.display="block";
+    if(document.querySelector('.write-review').style.display==="none"){
+        document.querySelector('.write-review').style.display="block";
+    }else{
+        document.querySelector('.write-review').style.display="none";
+    }
+    
+   
 
 }
 function write_Question(){

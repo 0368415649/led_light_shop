@@ -1,4 +1,4 @@
-<div class="content content_sp" id="content">
+<div class="content  content_sp" id="content">
 
         <div class="grap header-img">
                 <img src="./resources/img/support.png" alt="" width="100%">
@@ -140,7 +140,9 @@
     
         </div>
 </div>
-
+<script >
+        document.querySelector("#main_title").innerHTML = "SUPPORT";
+</script>
   
 
 

@@ -15,7 +15,7 @@
                         <img src="./resources/img/phon.png" alt="">
                         <div class="text-center mt-2" style="font-weight:500;">LUX</div>
                         <div class="text-center " style="font-weight:500;">PHONE NUMBER</div>
-                        <div class="text-center mt-2"><a class="text-center contact-contact"  href="#" >(805) 883.6866</a></div>
+                        <div class="text-center mt-2"><div class="text-center contact-contact" >(805) 883.6866</div></div>
                         
                     </div>
 
@@ -23,7 +23,7 @@
                         <img src="./resources/img/lux2.png" alt="">
                         <div class="text-center mt-2" style="font-weight:500;">LUX</div>
                         <div class="text-center " style="font-weight:500;">GMAILL</div>
-                        <div class="text-center mt-2"><a class="text-center contact-contact" href="#" class="">Support@luxledlights.com</a></div>
+                        <div class="text-center mt-2"><a href="mailto:duy2k1312@gmail.com" class="text-center contact-contact">Support@luxledlights.com</a></div>
                     </div>
 
                 </div>
@@ -33,3 +33,6 @@
         </div>
 
 </div>
+<script >
+        document.querySelector("#main_title").innerHTML = "CONTACT";
+</script>

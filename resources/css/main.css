@@ -33,10 +33,16 @@ html{
 }
 .header-controller-left-item{
     margin-right: 55px;
+    padding-top: 10px;
     /* position: relative; */
 }
+#header-shop-product{
+    overflow: auto;
+    height: 400px;
+}
 .header-p{
-    padding: 10px 40px;
+    padding: 20px 40px 10px 40px;
+    border-bottom: 1px solid #dcdbdb;
 }
 
 
@@ -75,6 +81,7 @@ html{
 }
 .header-search-cart {
     height: 40px;
+    cursor: pointer;
 }
 .header-search-icon {
     height: 35px;
@@ -418,6 +425,7 @@ a{
     border: 1px solid rgb(197, 194, 194);
     font-size: 20px;
     width: 30px;
+    cursor: pointer;
 }
 .content-more-quantity-number{
     display:flex;
@@ -505,13 +513,16 @@ a{
     font-size: 14px;
 }
 .write-review-button{
-    font-size:20;
     padding: 10px 30px;
     border-radius: 4px;
     border-color: transparent;
     font-weight: 500;
     color: white;
     background-color: #e5622e;
+    width: 200px;
+    text-align: center;
+    margin-left: auto;
+    cursor: pointer;
 
 }
 .write-Question{
@@ -535,6 +546,9 @@ a{
 .contact-contact , .maincolor{
     color:#e5622e
 
+}
+.content_sp{
+    padding-bottom: 100px;
 }
 .content_sp_title{
     border-top: 1px solid #455560;
@@ -595,6 +609,9 @@ a{
     border-radius: 3px;
     padding: 4px 3px 0px 3px
 
+}
+.clicklick,.clicklickup,.clicklick2{
+    color: #e35820;
 }
 .quick_link{
     display:flex;
@@ -760,4 +777,65 @@ a{
     color: darkslategrey;
 
 }
+.Reviews_grapp{
+    margin-top:20px;
+}
+.font_sm{
+    font-size: 13px;
+}
+.Reviews_tlt{
+    margin-top:5px;
+    font-weight: 500;
+}
+.Reviews_cnt{
+    font-size:14px;
+    font-weight:300;
+}
+.Reviews_cnt_tlt{
+    margin-top:5px;
+}
+.view_cart_title{
+    text-align: center;
+    color: #565656;
+    font-size: 40px;
+    font-weight: 400;
+    padding: 60px 0px;
+    border-bottom: 1px solid #dad8d8;
+}
+.cart_view_grap{
+    padding: 15px 0px ;
+    border-bottom: 1px solid #dad8d8;
+    align-items: center;
+    justify-content: center;
+}
+.cart_view_grap div{
+    font-size:20px;
+    font-weight: 200;
+    padding: 20px 0px;
 
+}
+.view_cart_w{
+    background:white;
+    color: black;
+    border-top: 1px solid rgb(197, 194, 194);
+    border-bottom: 1px solid rgb(197, 194, 194);
+
+}
+.cart_view_grap_bd{
+    border-bottom: 1px solid rgb(197, 194, 194);
+    
+}
+.content_idx{
+    padding-bottom: 100px;
+}
+.view_cart_title_a{
+        color: #e35820;
+}
+.view_cart_title_a:hover{
+    color:violet;
+}
+.message{
+    font-size: 20px;
+    color: red;
+    padding-left: 20px;
+}

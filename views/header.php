@@ -10,12 +10,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/b369642a0f.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title id="main_title">Document</title>
 </head>
 <body>
 <div id="comeback"></div>
 <div id="app">
-<div class="header">
+<div class="header" style="z-index:2;">
             <div class="grap header-title">
               <div class="header-title" >QUALITY LED LIGHTING FOR CONTEMPORARY INTERIORS.</div>
             </div>
@@ -51,19 +51,18 @@
                                     </div>
                                 </li>
                                 <li class="header-controller-left-item"><a class="header-controller-left-item-hover" href="?route=support">SUPPORT</a> </li>
-                                <li class="header-controller-left-item "><a class="header-controller-left-item-hover" href="./resources\img\LUX_2021.pdf">GALLER</a></li>
+                                <li class="header-controller-left-item "><a class="header-controller-left-item-hover" href="./resources\img\file_pdf2.pdf">GALLER</a></li>
                                 <li class="header-controller-left-item"><a class="header-controller-left-item-hover" href="?route=contact">CONTACT</a></li>
 
                             </ul>
 
-                            <a href="/led_light_project" class="header-controller-right">
-                                <img src="https://cdn.shopify.com/s/files/1/2140/1185/files/LUX_LED_Lighting_Logo_2000x1000_Transparent-01_512x.png?v=1579286210" alt="" width="130px" height="65px">
+                            <a href="./" class="header-controller-right">
+                                <img src="./resources\img\logo4.png" alt="" style="border:1px solid #d6cece; border-radius:5px;" width="90px" height="60px">
                             </a>
 
                         </div>
 
                 </div>
-
                 <div class="header-search">
                         <div class="header-search-grap">
                             <input type="text" class="header-search-input" placeholder="Search here ...">
@@ -82,7 +81,7 @@
                                 </div>
                                 <div class="header_cart_t">
                                     <div class="header_cart_t_1">CART</div>
-                                    <a href="#">VIEW CART</a>
+                                    <a href="?slug=view_cart">VIEW CART</a>
                                 </div>
                                 <div class="header_cart_contentt">
                                     

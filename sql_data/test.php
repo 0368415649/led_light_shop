@@ -29,20 +29,18 @@ for( $i =0 ; $i < count($data); $i++){
             <div class="content-main-name">'.$data[$i]["name"].' - '.$data[$i]["name2"].'</div>
             <div class="content-main-price">$'.$data[$i]["price"].'.00 USD</div>
             <div class="content-main-star">
-                <span class="color-change">
-                    <i class="fa-solid fa-star "></i>
-                    <i class="fa-solid fa-star "></i>
-                    <i class="fa-solid fa-star "></i>
-                    <i class="fa-solid fa-star "></i>
-                    <i class="fa-solid fa-star "></i>
-                </span>
-                <span    class="content-main-view">'.$data[$i]["riview"].' reviews</span>
+          
             </div>
         </div>
-    </a>';
+    </a>
+    
+    <script>
+    document.querySelector("#main_title").innerHTML = "HOME";
+    </script>
+    ';
    
    
       }
 
-
+//       <span class="color-chang ew"><span class="content-main-view_sss"> </span> reviews</span>
 ?>
