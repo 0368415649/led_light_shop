@@ -18,6 +18,7 @@
             $quantily = "quantily".$i;
             $sql2="INSERT INTO `order_aptech`( `customer_email`,`name`, `img`, `quantily`) VALUES
          ('".$email."','".$_POST[$name]."','".$_POST[$img]."','".$_POST[$quantily]."')";
+<<<<<<< HEAD
              mysqli_query($conn,$sql2);
             $sql3="SELECT `quantily` FROM `light_led` WHERE `name` ='".$_POST[$name]."'";
             $result = mysqli_query($conn,$sql3);
@@ -28,6 +29,9 @@
 
 
          
+=======
+             mysqli_query   ($conn,$sql2);
+>>>>>>> 33cb63903cc563ae2e255aec90cf3d266f78d191
         }
 
 

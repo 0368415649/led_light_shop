@@ -1,7 +1,11 @@
 <?php
 
 include("./sql_connect.php");
+<<<<<<< HEAD
 $sql ="SELECT * FROM `light_led` WHERE `name` LIKE '".$_GET['search']."%'";
+=======
+$sql ="SELECT * FROM `light_led` WHERE `name2` LIKE '".$_GET['search']."%'";
+>>>>>>> 33cb63903cc563ae2e255aec90cf3d266f78d191
 $result = mysqli_query($conn,$sql);
 $data =mysqli_fetch_all($result,1);
 $count = count($data);
@@ -20,7 +24,11 @@ for( $i =0 ; $i < count($data); $i++){
         
                 </div>
                 <div class="content-main-atb">
+<<<<<<< HEAD
                     <div class="content-main-name">'.$data[$i]["brand"].' - '.$data[$i]["name"].'</div>
+=======
+                    <div class="content-main-name">'.$data[$i]["name"].' - '.$data[$i]["name2"].'</div>
+>>>>>>> 33cb63903cc563ae2e255aec90cf3d266f78d191
                     <div class="content-main-price">$'.$data[$i]["price"].'.00 USD</div>
                     <div class="content-main-star">
                 
