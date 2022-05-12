@@ -34,6 +34,8 @@ html{
 .header-controller-left-item{
     margin-right: 55px;
     padding-top: 10px;
+    padding-bottom:20;
+    cursor: pointer;
     /* position: relative; */
 }
 #header-shop-product{
@@ -54,6 +56,14 @@ html{
    background:white
    
 }
+.header_mobile{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background:white
+    
+ }
 .ff{
     height: 2000px;
 }
@@ -208,7 +218,7 @@ a{
 
 }
 .header-img{
-    padding-bottom: 40px;
+    padding-bottom: 0px;
 }
 .content-list{
     display: flex;
@@ -296,6 +306,10 @@ a{
     font-size: 13px;
 
 }
+.footer-item a{
+    color:white;
+}
+
 .footer-item{
     font-weight: 500;
     margin-bottom: 7px;
@@ -441,8 +455,7 @@ a{
     color: #e35820;
 }
 .contant-more-grap{
-    /* height: 600px;
-    overflow: auto; */
+    padding: 0px 60px 0px 0px
 }
 .Reviews{
     padding-bottom: 100px;
@@ -538,6 +551,7 @@ a{
 .contact-row{
     background-color: #333333;
     padding-bottom: 50px;
+    padding: 100px 0px ;
 }
 #contentx{
     padding: 0;
@@ -654,15 +668,47 @@ a{
     transform: translateX(100%);
     transition: transform linear 0.5s; 
 }
+.header_cart_grap2{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 60%;
+    background-color: black;
+    color:white;
+    padding: 60px;
+    transform: translateX(100%);
+    transition: transform linear 0.5s; 
+}
 #check_boxx:checked ~ .header_cart_grap{
-    transform: translateX(0);
+    transform: translateX(0%);
 
 }
 #check_boxx:checked ~ .fixedd{
     display: block;
 
 }
+#check_boxx2:checked ~ .header_cart_grap2{
+    transform: translateX(0%);
+
+}
+#check_boxx2:checked ~ .fixedd2{
+    display: block;
+
+}
+.shop-hover{
+    cursor: pointer;
+}
 .fixedd{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color:rgba(red, green, blue, alpha);
+    display:none;
+}
+.fixedd2{
     position: fixed;
     top: 0;
     bottom: 0;
@@ -770,7 +816,23 @@ a{
     color: white;
 
 }
+.header_cart_big_quantity2{
+    position: absolute;
+    left: 33.3px;
+    top: -3px;
+    background: #e35820;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 20px;
+    color: white;
+
+}
 .header_cart_big{
+    position:relative;
+}
+.header_cart_big2{
     position:relative;
 }
 .cart_cl{
@@ -839,3 +901,123 @@ a{
     color: red;
     padding-left: 20px;
 }
+.search_item_tlt{
+    margin-top: 200px;
+    text-align: center;
+    padding: 30px 0px;
+    font-size: 40px;
+    
+}
+.header-controller-imgg{
+    margin-left:100%;   
+    margin-bottom: 10px;
+}
+.header-controller {
+    width: 65%;
+}
+.ct_media{
+    padding:100px 200px; font-size :20px; font-weight:300;
+}
+/* CSS Mobile */
+.header_mobile_flex{
+    display:flex;
+    align-items: center;
+}
+.header_mobile_icon{
+    font-size:30px;
+    margin-left: 50px;
+}
+.header_mobile_fixed{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 60%;
+    left: 0;
+    background-color: black;
+    color:white;
+    padding: 60px 30px;
+    transform: translateX(-100%);
+    transition: transform linear 0.5s; 
+}
+.header_mobile_item{
+    padding: 10px 0px;
+    background: rgb(53, 54, 55);
+    width:100%;
+    display: block;
+    text-align: center;
+    margin-top:10px;
+    font-weight: 200;
+    font-size:16px;
+    color: white;
+    border-radius:5px;
+}
+.header_mobile_item:hover{
+    font-weight: 500;
+    color: #e34820;
+}
+
+.header_mobile_item_big{
+    font-weight: 500;
+    font-size: 20px;
+    color: #e34820;
+    margin: 20px 0px;
+    display: block;
+    font-weight: 200;
+}
+.xxx:hover .header_mobile_item_big{
+        font-weight: 500;
+        font-size: 24px;
+        color: white;
+}
+.header_mobile_item_big:hover{
+    font-weight: 500;
+    font-size: 24px;
+    color: white;
+}
+.yyy{
+    height: 0px;
+    transition: height 0.5s;
+    overflow: hidden;
+
+}
+.xxx:hover .yyy{
+    height: 250px;
+}
+#check_menu:checked ~ .header_mobile_fixed{
+    transform: translateX(0%);
+}
+#check_menu:checked ~ .fixedd{
+    display: block;
+}
+.header_mobile_search{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.95; 
+    z-index: 2;
+    padding: 60px;
+}
+.header_mobile_ip{
+    border: transparent;
+
+    font-size: 22px;
+    width: 90%;
+    padding-left: 10px;
+    font-weight: 200;
+    background: transparent;
+    border-bottom: 1px solid #55585d;
+    padding-bottom: 10px;
+    color: white;
+}
+.header_mobile_icon_seach{
+    /* padding: 3px; */
+    font-weight: 200;
+    background: transparent;
+    color: rgb(254, 254, 254);
+    font-weight: 200;
+    margin: 0px;
+}
+

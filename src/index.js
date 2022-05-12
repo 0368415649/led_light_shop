@@ -1,115 +1,23 @@
-// Show comment Plus
-const review_code = document.querySelector('.review_codeid');
-function showComment(data){
-    const storage = localStorage.getItem('comment');
-    cart_data= JSON.parse(storage);
-    let review_ql = 0;
-    if(storage){
-        cart_data= JSON.parse(storage);
-        s='';
-        cart_data.map((item)=>{
-            if(item.product.id === data){
-                review_ql = review_ql+1;
-                s+=`<div class="review_bid" style="padding: 20px 0px 30px 20px;">
-                        <span class="color-change ">
-                                <i class="fa-solid fa-star font_sm"></i>
-                                <i class="fa-solid fa-star font_sm"></i>
-                                <i class="fa-solid fa-star font_sm"></i>
-                                <i class="fa-solid fa-star font_sm"></i>
-                                <i class="fa-solid fa-star font_sm"></i>
-                            </span>
-                        <div class="Reviews_tlt fst-italic ">${item.product.name} on ${item.timeUp}</div>
-                        <div class="Reviews_cnt_tlt">${item.product.title}</div>
-                        <p class="Reviews_cnt" style="word-wrap: break-word;">${item.product.content}</p>
-                    </div>
-                    `;
-            }
-        })
-        document.querySelector('.Reviews_grapp').innerHTML = s;  
-        document.querySelectorAll('.content-main-view_ql').forEach((c) => {
-            c.innerHTML =review_ql;
-        })
+// search CART mobile
+document.querySelector('.icon_search').onclick = function(){
+    document.querySelector('.header_mobile_search').style.display='block';
+}
+document.querySelector('.close_search').onclick = function(){
+    document.querySelector('.header_mobile_search').style.display='none';
+}
+// search CART web
+document.querySelectorAll('.header-search-input').forEach(function(e,ix){
+    e.oninput = function() {
+        console.log(document.querySelectorAll('.header-search-icon'));
+        document.querySelectorAll('.header-search-icon')[ix].href ='?search='+ e.value;
+    
     }
-}
-if(review_code){
-showComment(review_code.innerHTML)
-}
+})
 // Handle Comment 
 let Comment_hd =[];
 if(document.querySelector('#form_review')){
     validate('#form_review');
 }
-function review_handle(data){
-        function requireds(rules,value){
-            if(rules === ''){
-                return '';
-            }
-            if(rules === 'email'){
-                if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)){
-                    return '';
-                }else{
-                    return 'This is not email';  
-                }
-            }
-            if(rules.split(":")){
-                var min = rules.split(":");
-                if(value.length < min[1]){
-                        return 'Enter at least '+min[1]+' characters';
-                    }else{
-                        return '' ;
-                    }
-            }
-        }
-
-        var validates = {
-            required: function(value,rules){
-                return value ? requireds(rules,value) :"Please enter this field";
-            }
-        }
-
-        inputs.forEach(function(input){
-            var rules = input.getAttribute('rules');
-            message = input.parentElement.querySelector('.message');
-            message.innerHTML =validates.required(input.value,rules)
-        })
-
-        messages = document.querySelectorAll('.message');
-            var check = true;
-            messages.forEach(function(e){
-                if(e.innerHTML !== ''){
-                    check = false;
-                    return 1;
-                }
-            })
-            if(check){
-                const review_name   =document.querySelector('.review_name')
-                const review_email   =document.querySelector('.review_email')
-                const review_title   =document.querySelector('.review_title')
-                const review_content   =document.querySelector('.review_content')
-                let storage = localStorage.getItem('comment');
-                let Product_Comment = {
-                    id:data,
-                    name: review_name.value,
-                    email: review_email.value,
-                    title: review_title.value,
-                    content: review_content.value,
-                }
-
-                if(storage){
-                    Comment_hd = JSON.parse(storage);
-                }
-                Comment_hd.push({product:Product_Comment, timeUp: new Date(),});
-                localStorage.setItem('comment',JSON.stringify(Comment_hd));
-                showComment(data);
-                review_name.value="";
-                review_email.value="";
-                review_title.value="";
-                review_content.value="";
-                alert("thank you for review");
-            }
-        }
-    
-
 //  Product_More Quantily Plus or Minass
 
 function addMinasCart(data){
@@ -117,9 +25,9 @@ function addMinasCart(data){
     text.forEach(function(item){
         if(item.getAttribute('data') == data){
             item.value -= 1;
-            if( item.value < 0){
-                alert("Quantity cannot be less than 0 ");
-                item.value = 0;
+            if( item.value < 1){
+                alert("Quantity cannot be less than 1 ");
+                item.value = 1;
             }else{
                 let storage = localStorage.getItem('cart');
                 if(storage){
@@ -131,7 +39,9 @@ function addMinasCart(data){
                     }
                 })
                 localStorage.setItem('cart',JSON.stringify(CartAraay));
-                showCart();
+                showCart('');
+                showCart('2');
+
                 showCart_view();
             }
         }
@@ -149,7 +59,8 @@ function addPlusCart(data){
         }
     })
     localStorage.setItem('cart',JSON.stringify(CartAraay));
-    showCart();
+    showCart('');
+    showCart('2');
     showCart_view();
 }
 
@@ -157,9 +68,9 @@ function addPlusCart(data){
 function addPlus(){
     const  buy_input2  = document.querySelector(".buy_input2") ;
     buy_input2.value-=1;
-    if( buy_input2.value < 0){
-        alert("Quantity cannot be less than 0 ");
-        buy_input2.value = 0;
+    if( buy_input2.value < 1){
+        alert("Quantity cannot be less than 1 ");
+        buy_input2.value = 1;
     }
 }
 function addMinas(){
@@ -177,7 +88,6 @@ function showCart_view(){
                 return Number(start) + (Number(item.product.price)*Number(item.quantity));
         },0)
         s='';
-        console.log(cart_data);
         if( cart_data.length === 0){
             s+='<div class="fs-3 text-center" style="padding:70px 0px"> Chưa Có sản phẩm nào được thêm </div>'
         }
@@ -209,49 +119,93 @@ function showCart_view(){
         document.querySelector('#cart_price_view').innerHTML = "$"+quantity+".00 USD";
     }
 }
+
 // showCart();
 if(document.querySelector('.cart_view_grap_bd')){
 showCart_view()
 }
 //  SHOW CART 
 var CartAraay = [];
-function showCart(){
+function showCart(data){
     const storage = localStorage.getItem('cart');
+
     if(storage){
         cart_data= JSON.parse(storage);
         const quantity = cart_data.reduce(function(start,item){
                 return Number(start) + (Number(item.product.price)*Number(item.quantity));
         },0)
         s='';
-        cart_data.map((item)=>{
-        s+=`
-            <div class="row header_cart_item">
-                <div class="col-lg-4 boxxx" >
-                    <img style=" border-radius: 3px;" src="${item.product.img}" width="100%" alt="">
-                </div>
-                <div class="col-lg-8 boxxx">
-                    <div class="header_cart_fs">${item.product.band} - ${item.product.name} </div>
-                    <div class="header_cart_fs2">$${item.product.price}.00 USD</div>
-                    <div class="main_flex">
-                        <div class="content-more-quantity-number"> 
-                            <div onclick=addMinasCart("${item.product.id}") class="content-more-op content-more-op-minus">-</div>  
-                            <input type="text" disabled="disabled" data="${item.product.id}" id="quantity" value="${item.quantity}" class="widht_sml buy_input">
-                            <div  onclick=addPlusCart("${item.product.id}") class="content-more-op content-more-op_plus">+</div> 
-                        </div>
-                        <button onclick=Remove_cart("${item.product.id}") class="buttonn">Remove</button>
-                    </div>
-                </div>
-            </div> 
+        // console.log(cart_data.length);
+        if(cart_data.length == 0){  
+            s=`
+            <div class="text-center cart_disable_main">
+                 <div style="color: #fff; font-weight:200;" class="fs-4 mb-3">No product</div>
+                 <img src="./resources/img/no-cart.png" width="100%" alt="">  
+            </div>
+
             `;
-        })
-        document.querySelector('.header_cart_contentt').innerHTML = s;
-        document.querySelector('#cart_price').innerHTML = "$"+quantity+".00 USD";
-        document.querySelector('.header_cart_big_quantity').innerHTML = cart_data.length;
+            var cart_all =document.querySelectorAll('.cart_disable')
+                cart_all.forEach(function(e){
+                    e.style.display = 'none';
+                })
+            // document.addEventListener("DOMContentLoaded", () => {
+            //         document.querySelector('.cart_disable').style.display = 'none';
+
+            // });
+        }else{
+            cart_data.map((item)=>{
+                s+=`
+                    <div class="row header_cart_item">
+                        <div class="col-lg-4 col-sm-4 col-4 boxxx" >
+                            <img style=" border-radius: 3px;" src="${item.product.img}" width="100%" alt="">
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-8 boxxx">
+                            <div class="header_cart_fs">${item.product.band} - ${item.product.name} </div>
+                            <div class="header_cart_fs2">$${item.product.price}.00 USD</div>
+                            <div class="main_flex">
+                                <div class="content-more-quantity-number"> 
+                                    <div onclick=addMinasCart("${item.product.id}") class="content-more-op content-more-op-minus">-</div>  
+                                    <input type="text" disabled="disabled" data="${item.product.id}" id="quantity" value="${item.quantity}" class="widht_sml buy_input">
+                                    <div  onclick=addPlusCart("${item.product.id}") class="content-more-op content-more-op_plus">+</div> 
+                                </div>
+                                <button onclick=Remove_cart("${item.product.id}") class="buttonn">Remove</button>
+                            </div>
+                        </div>
+                    </div> 
+                    `;
+        
+                })
+                var cart_all =document.querySelectorAll('.cart_disable')
+                cart_all.forEach(function(e){
+                    e.style.display = 'block';
+                })
+                    
+
+        }
+        
+        document.querySelector(`.header_cart_contentt${data}`).innerHTML = s;
+        document.querySelector(`#cart_price${data}`).innerHTML = "$"+quantity+".00 USD";
+        document.querySelector(`.header_cart_big_quantity${data}`).innerHTML = cart_data.length;
 
         
+    }else{
+        s=`
+        <div class="text-center">
+             <div style="color: #fff;" class="fs-4 mb-3">No product</div>
+             <img src="./resources/img/no-cart.png" widht="100%" alt="">  
+        </div>
+
+        `;
+
+        document.querySelector('.header_cart_contentt').innerHTML = s;
+
     }
 }
-showCart();
+
+
+showCart('');
+showCart('2');
+
 // REMOVE CART
 function Remove_cart(code_id){
     let storage = localStorage.getItem('cart');
@@ -263,7 +217,8 @@ function Remove_cart(code_id){
     })
 
     localStorage.setItem('cart',JSON.stringify(Cart));
-    showCart();
+    showCart('');
+    showCart('2');
     showCart_view();
     alert("Product "+code_id+ " has been deleted in the cart");
 
@@ -292,12 +247,13 @@ function addCart(data,price){
         CartAraay.push({product:Product_More, quantity:  Number(buy_input2.value) });
     }
     localStorage.setItem('cart',JSON.stringify(CartAraay));
-    showCart()
+    showCart('')
+    showCart('2');
     alert("Product "+Product_More.id+ " has been added to the cart");
 }
 
 
-//   Product_More Write review or question
+//   Product_More Write 
 function write_review(){
     if(document.querySelector('.write-review').style.display==="none"){
         document.querySelector('.write-review').style.display="block";
@@ -308,11 +264,6 @@ function write_review(){
    
 
 }
-function write_Question(){
-    document.querySelector('.write-review').style.display="none";
-    document.querySelector('.write-Question').style.display="block";
-}
-
 
 // Support Page Click Item
 var clicklick= document.querySelectorAll(".clicklick");
@@ -350,31 +301,6 @@ clicklickup.forEach((clup,index)=>{
 
 
 
-
-
-// document.addEventListener('DOMContentLoaded', function(){
-//     function change_fw(){
-//         var item = document.querySelectorAll(".content-item");
-//         item.forEach((items) =>{
-//             items.classList.add('content-item-color');
-//         })
-//     }
-//     var change_e = document.querySelectorAll(".content-item");
-//     var change_ex = document.querySelectorAll(".header-shop-item-l");
-
-// var content_item= document.querySelectorAll(".buy_input2");
-// console.log(content_item)
-//     change_e.forEach((el)=>{
-//         el.onclick= function(){
-//             el.classList.add('content-item-color');
-//         }
-//     })
-//     change_ex.forEach((el,index)=>{
-//            el.onclick= function(){
-//             change_e[index].classList.add('content-item-color');
-//         }
-//     })
-// })
 
 
 

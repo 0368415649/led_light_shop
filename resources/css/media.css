@@ -1,0 +1,125 @@
+.header_mobile{
+    display:none;
+}
+@media (min-width : 1239px) and (max-width : 1500px)   {
+    .content-list:nth-child(1){
+        padding-left: 100px;
+    }
+    .content-item{
+        margin-right: 120px;
+        font-size: 20px;
+    }
+
+}
+
+@media (min-width : 1024px) and (max-width : 1239px)   {
+            .content-list:nth-child(1){
+                padding-left: 30px;
+            }
+            .header-controller-imgg{
+                margin-left:-50%;   
+                margin-bottom: 10px;
+            }
+            .content-item{
+                margin-right: 90px;
+                font-size: 17px;
+            }
+            .sup_media{
+                width: 60%;
+            }
+            .ct_media{
+                padding:100px 100px;
+            }
+            .header_cart_grap{
+                padding: 20px;
+            }
+        }
+@media  (max-width : 1023px)   {
+    .ct_media{
+        padding: 100px 100px;
+    }
+    .header{
+        display: none ;
+    }
+    .content-item{
+        margin-right: 90px;
+        font-size: 16px;
+    }
+    .header_mobile{
+        display:block;
+    }
+    .header_cart_contentt2{
+        height: 300px;
+        padding: 20px;
+        overflow: auto;
+        margin-top:30px;
+    }
+    .header_cart_fs {
+        font-size: 11px;
+    }
+    .header_cart_fs2 {
+        font-size: 12px;
+    }
+    .widht_sml {
+        width: 20px;
+    }
+    .content-more-op {
+        width: 20px;
+    }
+    .buttonn {
+        padding: 5px 10px;
+        font-size: 10px;
+        border-radius: 3px;
+    }
+    .sup_media{
+        width: 70%;
+    }
+    .contact-row{
+        padding: 50px ;
+    }
+    .boxz{
+        margin-bottom: 20px;
+    }
+    .header_cart_grap2{
+        padding: 20px;
+    }
+    .content-list:nth-child(1){
+        padding-left: 30px;
+    }
+    .content-item{
+        margin-right: 50px;
+        font-size: 15px;
+    }
+    .content_sp_list_title{
+        font-size: 16px;
+    
+    }
+}
+
+@media  (max-width : 700px)   {
+
+.contant-more-grap {
+    padding: 20px;
+}
+.content-item{
+    margin-right: 50px;
+    font-size: 12px;
+}
+.content-list:nth-child(1){
+    padding-left: 30px;
+}
+.sup_media{
+    width: 90%;
+}
+.content_sp_list_title{
+    font-size: 16px;
+
+}
+}
+/* @media  (max-width : 1100px)   {
+
+    .contant-more-grap {
+        overflow: auto;
+        height: 300px;
+    }
+    } */

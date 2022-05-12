@@ -1,19 +1,28 @@
 
     <?php
+    
     if(isset($_GET['route']) && ($_GET['route']) == "shipping" ){
-        include "./shipping.php";
+        include "./views/body/GET_ROUTE/shipping.php";
 
     }else{
+    // HEADER   
     include "./views/header.php";
-    if(isset($_GET['slug'])){
-        if($_GET['slug'] == 'view_cart'){
-            include './views/body/cart_view.php';
+
+
+    if(isset($_GET['slug']) || isset($_GET['search']) ){
+        if(isset($_GET['search'])){
+            include './views/body/GET_SEARCH/search.php';
         }else{
-            include './sql_data/more.php';
+            if($_GET['slug'] == 'view_cart'){
+                include './views/body/GET_slug/cart_view.php';
+            }else{
+                include './views/body/GET_slug/more.php';
+            }
         }
        
     }else{
         if( !isset($_GET['slug']) && !isset($_GET['route']) ){
+            // change font-weight
              $color_f = $color_t = $color_c  = '';
              $color_all= 'content-item-color';
              if(isset($_GET['category'])){
@@ -32,7 +41,7 @@
                }
             
             
-                echo' <div class="content " id="content">
+    echo' <div class="content " id="content">
                 <div class="content_hiden">
                     <div class="grap header-img ">
                             <img src="./resources/img/anh1.png" alt="" width="100%">
@@ -48,49 +57,32 @@
                 </div>';
         }
     echo '
-           
-
             <div class="grap content-main"  >  
                 <div class="row" id="root" >';
                             if(isset($_GET['route'])){
                                     if($_GET['route'] == 'support'){
-                                        include './views/body/support.php';
+                                        include './views/body/GET_ROUTE/support.php';
                                     }
                                     if($_GET['route'] == 'contact'){
-                                        include './views/body/contact.php';
+                                        include './views/body/GET_ROUTE/contact.php';
+                                    }
+                                    if($_GET['route'] == 'Privacy_Policy'){
+                                        include './views/body/GET_ROUTE/Privacy_Policy.php';
                                     }
                                     
                             }else{
-                                include './sql_data/test.php';
+                                include './views/body/home.php';
                             }
                             
-        echo ' 
+        echo '      
                     </div>
                 </div>
             </div>  ';
     }
+    
+    // FOOTER
     include './views/footer.php';
 }
     ?>
 
 
-<script>
-        function change_fw(){
-        var item = document.querySelectorAll(".content-item");
-        item.forEach((items) =>{
-            items.classList.add('content-item-color');
-        })
-    }
-    var change_e = document.querySelectorAll(".content-item");
-    var change_ex = document.querySelectorAll(".header-shop-item-l");
-    change_e.forEach((el)=>{
-        el.onclick= function(){
-            el.classList.add('content-item-color');
-        }
-    })
-    change_ex.forEach((el,index)=>{
-           el.onclick= function(){
-            change_e[index].classList.add('content-item-color');
-        }
-    })
-</script>
