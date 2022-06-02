@@ -155,7 +155,13 @@ a{
     text-decoration: none;
 }
 .header-shop-item a{
-    width: 200px;
+    width: 200px;    width: 300px;
+    content: '';
+    position: absolute;
+    height: 70px;
+    top: -40px;
+    left: 0px;
+    background: transparent;
 }
 .header-shop-item img{
     border-radius: 100%;
@@ -251,6 +257,12 @@ a{
     padding: 0px 30px;
     margin-bottom: 60px;
     cursor: pointer;
+
+}
+.box22{
+    box-sizing:border-box;
+    padding: 0px 30px;
+    margin-bottom: 60px;
 
 }
 .content-main-atb{
@@ -989,7 +1001,6 @@ a{
 #check_menu:checked ~ .fixedd{
     display: block;
 }
-<<<<<<< HEAD
 .header_mobile_search{
     position: fixed;
     top: 0;
@@ -1000,6 +1011,7 @@ a{
     opacity: 0.95; 
     z-index: 2;
     padding: 60px;
+    height: 100%;
 }
 .header_mobile_ip{
     border: transparent;
@@ -1021,6 +1033,81 @@ a{
     font-weight: 200;
     margin: 0px;
 }
-=======
->>>>>>> 33cb63903cc563ae2e255aec90cf3d266f78d191
 
+.content_plus_cart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 30px;
+}
+.content_plus_over{
+    display: flex;
+
+}
+.over{
+   font-size:23px;
+   cursor: pointer;
+}
+.over:hover{
+    font-size: 26px;
+    color: #e34820;
+}
+.content_plus_over:hover .over{
+    width: 100px;
+    height: 20px;
+    overflow:visible;
+}
+.brand_list{
+    border: 1px solid rgb(156, 156, 156);
+    padding: 20px;
+    position:absolute;
+    background:white;
+    width: 150px;
+    left: -20px;
+    top: 40px;
+    display: none;
+    animation: lightly ease-out 0.5s;
+}
+.brand_big::after{
+    width: 200px;
+    content: '';
+    position: absolute;
+    height: 30px;
+    /* background:red; */
+    left:0px;
+    background: transparent;
+}
+.brand_big:hover .brand_list{
+    display: block;
+}
+.brand_item{
+    font-size: 15px;
+    font-weight:200;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgb(144, 142, 142);
+}
+.brand_item:hover{
+    background-color:#f09d7c;
+    padding: 5px 20px;
+    font-weight: 500;
+
+
+}
+.brand_item:hover a{
+    color: white;
+
+}
+.brand_big{
+    position: relative;
+}
+.home-product-item__sale-off {
+    position: absolute;
+    top: 13px;
+    right: 10%;
+    width: 70px;
+    height: 70px;
+    background-color: rgb(154, 205, 50,0.7);
+    text-align: center;
+    /* display: flex; */
+    flex-direction: column-reverse;
+}

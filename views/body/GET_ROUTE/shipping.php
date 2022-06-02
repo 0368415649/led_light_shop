@@ -1,42 +1,84 @@
 <?php
     include("./sql_connect.php");
+    $fisrtname_old=$lastname_old=$email_old=$address_old=$phone_old='';
 
-
-    if( isset($_POST['email'])  && $_POST['email'] !=""){
-       $last_name = $_POST['last_name'];
-       $first_name = $_POST['first_name'];
-       $email = $_POST['email'];
-       $address = $_POST['address'];
-       $phone = $_POST['phone'];
-       $sql="INSERT INTO `customer_pj`(`ct_emaill`, `ct_phone`, `ct_address`, `ct_firtsname`, `ct_lastname`)
-        VALUES ('".$email."','".$phone."','".$address."','".$first_name."','".$last_name."')";
-
-        mysqli_query($conn,$sql);
-        for($i =0 ; $i <$_POST['length'] ; $i++ ){
-            $name = "name".$i;
-            $img = "img".$i;
-            $quantily = "quantily".$i;
-            $sql2="INSERT INTO `order_aptech`( `customer_email`,`name`, `img`, `quantily`) VALUES
-         ('".$email."','".$_POST[$name]."','".$_POST[$img]."','".$_POST[$quantily]."')";
-<<<<<<< HEAD
-             mysqli_query($conn,$sql2);
-            $sql3="SELECT `quantily` FROM `light_led` WHERE `name` ='".$_POST[$name]."'";
-            $result = mysqli_query($conn,$sql3);
-            $data =mysqli_fetch_assoc($result);
-            
-            $sql4="UPDATE `light_led` SET `quantily`='".$data['quantily']-$_POST[$quantily]."'  WHERE `name` ='".$_POST[$name]."' ";
-            mysqli_query($conn,$sql4);
-
-
-         
-=======
-             mysqli_query   ($conn,$sql2);
->>>>>>> 33cb63903cc563ae2e255aec90cf3d266f78d191
+    if( isset($_POST['old_customers'])  && $_POST['old_customers'] !=""){
+        $sql="SELECT * FROM `customer_pj` WHERE 1";
+        $result = mysqli_query($conn,$sql);
+        $data =mysqli_fetch_all($result,1);
+        $count = count($data);
+        for( $i =0 ; $i < count($data); $i++){
+            if($_POST['old_customers'] === $data[$i]['ct_emaill']){
+                $address_old = $data[$i]['ct_address'];
+                $email_old = $data[$i]['ct_emaill'];
+                $phone_old = $data[$i]['ct_phone'];
+                $lastname_old = $data[$i]['ct_lastname'];
+                $fisrtname_old = $data[$i]['ct_firtsname'];
+               
+            }
         }
+    }else{
+
+        if( isset($_POST['email'])  && $_POST['email'] !=""){
+            $last_name = $_POST['last_name'];
+            $first_name = $_POST['first_name'];
+            $email = $_POST['email'];
+            $address = $_POST['address'];
+            $phone = $_POST['phone'];
+            $query="SELECT * FROM `customer_pj` WHERE 1";
+            $result = mysqli_query($conn,$query);
+            $data =mysqli_fetch_all($result,1);
+            $count = count($data);
+            $check =0 ;
+            // add customer
+            for( $i =0 ; $i < count($data); $i++){
+                if($_POST['email'] === $data[$i]['ct_emaill']){
+                   $sqll= "UPDATE `customer_pj`
+                    SET `ct_phone`='".$phone."',`ct_address`='".$address."',
+                    `ct_firtsname`='".$first_name."',`ct_lastname`='".$last_name."' WHERE `ct_emaill`= '".$email."'";
+                    mysqli_query($conn,$sqll);
+                    $check =1;
+                }
+            }
+            if($check == 0){
+                    $sql="INSERT INTO `customer_pj`(`ct_emaill`, `ct_phone`, `ct_address`, `ct_firtsname`, `ct_lastname`)
+                    VALUES ('".$email."','".$phone."','".$address."','".$first_name."','".$last_name."')";
+                    mysqli_query($conn,$sql);
+            }
+
+             for($i =0 ; $i <$_POST['length'] ; $i++ ){
+                $name = "name".$i;
+                $img = "img".$i;
+                $quantily = "quantily".$i;
+
+                // add order
+
+                 $sqlxx ="SELECT id FROM `customer_pj` WHERE ct_emaill = '".$email."'";
+                 $result2 = mysqli_query($conn,$sqlxx);
+                 $data2 =mysqli_fetch_assoc($result2);
+                 $sql2="INSERT INTO `order_aptech`( `customer_id`,`product_id`, `img`, `quantily`) VALUES
+              ('".$data2['id']."','".$_POST[$name]."','".$_POST[$img]."','".$_POST[$quantily]."')";
+                echo $sql2;    
+                mysqli_query($conn,$sql2);
 
 
-        header('location:/led_light_project2');
+                // quantity minuss  
+                 $sql3="SELECT `quantily` FROM `light_led` WHERE `code_id` ='".$_POST[$name]."'";
+                 $result = mysqli_query($conn,$sql3);
+                 $data =mysqli_fetch_assoc($result);
+                 $sql4="UPDATE `light_led` SET `quantily`='".$data['quantily']-$_POST[$quantily]."'  WHERE `code_id` ='".$_POST[$name]."' ";
+                 mysqli_query($conn,$sql4);
+                //  echo $sql4;
+     
+    
+             }
+     
+     
+             header('location:/led_light_project2');
+         }
     }
+
+  
 
 ?>
 
@@ -152,41 +194,84 @@
     .container{
         animation: lightly ease-out 3s;
     }
+    .old_customers{
+        position:fixed;
+        top:0;
+        left:0;
+        right: 0;
+        bottom: 0;
+        background-color: black;
+        opacity: 0.95;
+        display: flex;
+        display: none;
+    }
+    .form_agin{
+        margin: auto;
+        display: flex;
+        align-items: center;
+    }
+    .form_agin  input{
+        width: 300px;
+        height: 50px;
+        border-radius:4px;
+        margin-right:20px ;
+    }
+    .form_agin  button{
+        padding: 10px 20px;
+        border-radius:4px;
+        background-color:  #ee5533e8;
+        color:white;
+        font-size:15px;
+    }
+    .click_hrer{
+        padding: 10px 20px ;
+        border-radius:4px;
+        background-color:  #ee5533e8;
+        color:white;
+        font-size:15px;
+        cursor: pointer;
+    }
 </style>
 <body>
     <div class="container">
+        <div class="old_customers ">
+                            <form method="post" action="" class="form_agin">
+                                <input name="old_customers" placeholder="   Enter the email you have purchased!" type="text"> 
+                                <button>Enter</button>       
+                            </form>
+        </div>  
         <form action="" method="POST" class="shipping_cart">
                 <div class="row">
-
                     <div class="col-lg-7 box shipping_adr">
-                        <div class="text-center shipping_adr_tlt">LUX LED Lighting <a style="color: #e35820;" href="?slug=view_cart">View_cart</a> </div>
+                        <div class="text-center shipping_adr_tlt">LUX LED Lighting <a style="color: #e35820;" href="?route=view_cart">View_cart</a> </div>
+                        <div class="mt-3">Have you ever purchased?? <span class="click_hrer">click hrer</sp></div>
+                     
                         <div class="fs-5 shipping_adr_tlt2">Contact information</div>
                         <div class="">
-                            <input type="text"  rules='email' name="email" class="shipping_adr_ip" placeholder="Email">
+                            <input type="text" value="<?= @$email_old ?>" rules='email' name="email" class="shipping_adr_ip" placeholder="Email">
                             <span class="message"></span>   
                         </div>
                         <div class="fs-5 shipping_adr_tlt2">Shipping address</div>
-
                         <div class="shipping_adr_ip_gr mt-2">
 
                             <div class="" style="padding: 0px 50px 0px 0px; flex: 1;">
-                                <input type="text"  rules='' name="first_name" class="shipping_adr_ip shipping_adr_ip_w mgau"  placeholder="First name">
+                                <input type="text" value="<?= @$fisrtname_old ?>"   rules='' name="first_name" class="shipping_adr_ip shipping_adr_ip_w mgau"  placeholder="First name">
                                 <span class="message"></span>   
                             </div>
 
                             <div class="" style="padding: 0px 0px 0px 2px; flex: 1;">
-                                <input type="text"  rules='' name="last_name" class="shipping_adr_ip shipping_adr_ip_w "  placeholder="Last name"   >
+                                <input type="text" value="<?= @$lastname_old ?>"   rules='' name="last_name" class="shipping_adr_ip shipping_adr_ip_w "  placeholder="Last name"   >
                                 <span class="message"></span>   
                             </div>
 
                         </div>
 
                         <div class="mt-3">
-                            <input type="text"  rules='min:5' name="address" class="shipping_adr_ip"  placeholder="Address"  >
+                            <input type="text" value="<?= @$address_old ?>"   rules='min:5' name="address" class="shipping_adr_ip"  placeholder="Address"  >
                             <span class="message"></span>   
                         </div>
                         <div class="mt-3">
-                            <input type="text"  rules='phone' name="phone" class="shipping_adr_ip"  placeholder="Phone"  >
+                            <input type="text" value="<?= @$phone_old ?>"   rules='phone' name="phone" class="shipping_adr_ip"  placeholder="Phone"  >
                             <span class="message"></span>   
                         </div>
 
@@ -221,6 +306,11 @@
 </html>
 <script src="src/validate.js"> </script>
 <script>
+    document.querySelector('.click_hrer').onclick = function(){
+        document.querySelector('.old_customers').style.display = 'flex';
+    }
+
+    
     function Call_back(){
         alert('We have received your application, we will contact you soon, thank you for your purchase');
         localStorage.removeItem('cart');
@@ -253,7 +343,7 @@ function showCart(){
                        
                    </div>
                </div>
-               <input  type="hidden" name="name${ix}" value="${item.product.name}" >
+               <input  type="hidden" name="name${ix}" value="${item.product.id}" >
                <input type="hidden" name="img${ix}" value="${item.product.img}">
                <input type="hidden"name="quantily${ix}" value="${item.quantity}">
 

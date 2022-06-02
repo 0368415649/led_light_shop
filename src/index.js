@@ -10,7 +10,6 @@ document.querySelectorAll('.header-search-input').forEach(function(e,ix){
     e.oninput = function() {
         console.log(document.querySelectorAll('.header-search-icon'));
         document.querySelectorAll('.header-search-icon')[ix].href ='?search='+ e.value;
-    
     }
 })
 // Handle Comment 
@@ -89,7 +88,10 @@ function showCart_view(){
         },0)
         s='';
         if( cart_data.length === 0){
-            s+='<div class="fs-3 text-center" style="padding:70px 0px"> Chưa Có sản phẩm nào được thêm </div>'
+            s+=`<div class="text-center  p-5 " id="">
+            <img  src="./resources/img/404.png" alt="">
+        
+        </div>`;
         }
         else{
 
@@ -117,6 +119,13 @@ function showCart_view(){
         }
         document.querySelector('.cart_view_grap_bd').innerHTML = s;
         document.querySelector('#cart_price_view').innerHTML = "$"+quantity+".00 USD";
+    }else{
+        s+=`<div class="text-center  p-5 " id="">
+        <img  src="./resources/img/404.png" alt="">
+    
+    </div>`;
+    document.querySelector('.cart_view_grap_bd').innerHTML = s;
+
     }
 }
 
@@ -227,7 +236,7 @@ function Remove_cart(code_id){
 function addCart(data,price){
     const  cart_img  = document.querySelector("#cart_img") ;
     const  cart_name  = document.querySelector("#cart_name") ;
-    const  cart_name2  = document.querySelector("#cart_name2") ;   
+    const  cart_name2  = document.querySelector("#cart_name2") ; 
     const  buy_input2  = document.querySelector(".buy_input2") ;  
     let storage = localStorage.getItem('cart');
     let Product_More = {
@@ -251,6 +260,31 @@ function addCart(data,price){
     showCart('2');
     alert("Product "+Product_More.id+ " has been added to the cart");
 }
+//addcart home
+
+function addCart_home(data,img,brand,name,price){
+    let storage = localStorage.getItem('cart');
+    let Product_More = {
+        id:data,
+        img: img,
+        band: brand,
+        name: name,
+        price: price,
+    }
+    if(storage){
+        CartAraay = JSON.parse(storage);
+    }
+    let item = CartAraay.find(c => c.product.id == data );
+    if(item){
+        item.quantity =  Number(item.quantity)+ 1;
+    } else{
+        CartAraay.push({product:Product_More, quantity:  1 });
+    }
+    localStorage.setItem('cart',JSON.stringify(CartAraay));
+    showCart('')
+    showCart('2');
+    alert("Product "+Product_More.id+ " has been added to the cart");
+} 
 
 
 //   Product_More Write 

@@ -13,7 +13,7 @@
         </div>
 
         <div class="col-lg-2 col-sm-3 boxz">
-            <div class="footer-one-title">Bright world RESOURCES</div>
+            <div class="footer-one-title">BRIGHT WORLD RESOURCES</div>
             <ul class="">
                 <li class="footer-item"><a href="?route=support">Customer Service</a></li>
                 <li class="footer-item"><a href="./resources\img\file_pdf2.pdf">Product Catalog</a></li>
@@ -24,10 +24,10 @@
         </div>
 
         <div class="col-lg-2 col-sm-3 boxz">
-            <div class="footer-one-title">CONNECT</div>
+            <div class="footer-one-title">CHAT ONLINE</div>
                 <ul class="" >
                     <li class="footer-item"><a style="color:white;"  href="https://www.facebook.com/tatsu.michio.5"><i class="fa-brands fa-facebook"></i>Facebook</a></li>
-                    <li class="footer-item"><a style="color:white;"  href="https://www.facebook.com/VuLongDzai"><i class="fa-brands fa-pinterest"></i></i>Pinterest</a></li>
+                    <li class="footer-item"><a style="color:white;"  href="https://www.facebook.com/VuLongDzai"><i class="fa-brands fa-facebook-messenger"></i>Messenger</a></li>
                     <li class="footer-item"><a style="color:white;"  href="https://www.facebook.com/profile.php?id=100036256956949"><i class="fa-brands fa-instagram"></i>Instagram</a></li>
                 </ul>
         </div>

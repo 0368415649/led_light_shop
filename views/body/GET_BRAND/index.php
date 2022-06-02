@@ -1,21 +1,15 @@
 <?php
 
 include("./sql_connect.php");
-if($_GET['search'] === ''){
-echo'<div class="content text-center  p-5 " id="content">
-    <img  src="./resources\img\404.png" alt="">
-
-</div>';'
-';
-}else{
-$sql ="SELECT * FROM `light_led` WHERE `name` LIKE '%".$_GET['search']."%'";
+$sql ="SELECT * FROM `light_led` WHERE `brand` = '".$_GET['brand']."'";
+echo $sql;
 $result = mysqli_query($conn,$sql);
 $data =mysqli_fetch_all($result,1);
 $count = count($data);
 mysqli_close($conn);
 echo ' 
 <div class="content " id="content">
-    <div class="mt-5 search_item_tlt">There are '.$count.' products with keyword "'.$_GET['search'].'"</div>
+    <div class="mt-5 search_item_tlt">All brands '.$_GET['brand'].' are shown below </div>
     <div class="grap content-main"  >  
                     <div class="row" id="root" >';
 for( $i =0 ; $i < count($data); $i++){
@@ -46,13 +40,11 @@ for( $i =0 ; $i < count($data); $i++){
         echo'
     </div>
 </div>
-
     <script>
-    document.querySelector("#main_title").innerHTML = "SEARCH";
+    document.querySelector("#main_title").innerHTML = "BRAND";
     </script>
     ';
+}
 
-}
-    
-}
+
 ?>

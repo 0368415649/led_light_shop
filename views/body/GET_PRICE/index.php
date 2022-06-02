@@ -1,21 +1,22 @@
 <?php
 
 include("./sql_connect.php");
-if($_GET['search'] === ''){
-echo'<div class="content text-center  p-5 " id="content">
-    <img  src="./resources\img\404.png" alt="">
+if($_GET['price'] == 'HIGH TO LOW'){
+    $sql ="SELECT * FROM `light_led` ORDER BY price DESC";
 
-</div>';'
-';
-}else{
-$sql ="SELECT * FROM `light_led` WHERE `name` LIKE '%".$_GET['search']."%'";
+}
+if($_GET['price'] == 'LOW TO HIGH'){
+    $sql ="SELECT * FROM `light_led` ORDER BY price ";
+
+}
+
 $result = mysqli_query($conn,$sql);
 $data =mysqli_fetch_all($result,1);
 $count = count($data);
 mysqli_close($conn);
 echo ' 
 <div class="content " id="content">
-    <div class="mt-5 search_item_tlt">There are '.$count.' products with keyword "'.$_GET['search'].'"</div>
+    <div class="mt-5 search_item_tlt">Products are sorted from '.$_GET['price'].'</div>
     <div class="grap content-main"  >  
                     <div class="row" id="root" >';
 for( $i =0 ; $i < count($data); $i++){
@@ -46,13 +47,12 @@ for( $i =0 ; $i < count($data); $i++){
         echo'
     </div>
 </div>
-
     <script>
-    document.querySelector("#main_title").innerHTML = "SEARCH";
+    document.querySelector("#main_title").innerHTML = "SORT BY PRICE";
     </script>
     ';
-
-}
     
 }
+
+
 ?>

@@ -31,10 +31,14 @@
                                 <div class="text-end close_search">
                                         <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
                                 </div>
-                                <input type="text" class="header-search-input header_mobile_ip" placeholder="Search here ...">
-                                <a href="./" class="header-search-icon header_mobile_icon_seach">
-                                    <i class="fa-solid fa-magnifying-glass header-search-icons"></i>
-                                </a>
+
+                                <div class="d-flex">
+                                    <input type="text" class="header-search-input header_mobile_ip" placeholder="Search here ...">
+                                    <a href="./" class="header-search-icon header_mobile_icon_seach">
+                                        <i class="fa-solid fa-magnifying-glass header-search-icons"></i>
+                                    </a>
+                                </div>
+
                             </div>
                         <!-- cart -->
                         <div class="header_cart_big2">
@@ -59,7 +63,7 @@
                                     <div class="header_cart_fs3" id="cart_price2">$0.00</div>
                                 </div>
                                 <div class="cart_disable" style="display:none">
-                                 <a href="?route=shipping" class="header_cart_buy">Check Out</a>
+                                 <a href="?come=shipping" class="header_cart_buy">Check Out</a>
                                 </div>
                             </div>
                         </div>
@@ -83,6 +87,19 @@
                                         </ul>                                    </li>
                                     <li class=" " style="margin-top:-20px;"><a class="header_mobile_item_big" href="?route=support">SUPPORT</a></li>
                                     <li class="  "><a class="header_mobile_item_big" href="?route=contact">CONTACT</a></li>
+                                    <li class="xxx " ><div class="header_mobile_item_big" href="#">BRAND</div>
+                                        <ul class="text-end yyy" >
+                                            <li class=""><a class="header_mobile_item" href="?brand=BROOKLYN">BROOKLYN</a></li>
+                                            <li class=""><a class="header_mobile_item" href="?brand=TORONTO">TORONTO</a></li>
+                                            <li class=""><a class="header_mobile_item" href="?brand=LINCOLN">LINCOLN</a></li>
+                                            <li class=""><a class="header_mobile_item" href="?brand=BROOKLYN">HIGHLINE</a></li>
+                                        </ul>                                    </li>
+                                    <li class="xxx " ><div class="header_mobile_item_big" href="#">PRICE</div>
+                                        <ul class="text-end yyy" >
+                                            <li class=""><a class="header_mobile_item" href="?price=HIGH TO LOW">HIGH TO LOW</a></li>
+                                            <li class=""><a class="header_mobile_item" href="?price=LOW TO HIGH">LOW TO HIGH</a></a></li>
+                                        </ul>                                    
+                                    </li>
                                 </ul>
                         </div>
 
@@ -147,6 +164,20 @@
                                 </li>
                                 <li class="header-controller-left-item"><a class="header-controller-left-item-hover" href="?route=support">SUPPORT</a> </li>
                                 <li class="header-controller-left-item"><a class="header-controller-left-item-hover" href="?route=contact">CONTACT</a></li>
+                                <li class="header-controller-left-item brand_big" style="font-size: 18px;" ><div class="">BRAND</div>
+                                    <ul class="brand_list">
+                                        <li class="brand_item"><a href="?brand=BROOKLYN">BROOKLYN</a></li>
+                                        <li class="brand_item"><a href="?brand=TORONTO">TORONTO</a></li>
+                                        <li class="brand_item"><a href="?brand=LINCOLN">LINCOLN</a></li>
+                                        <li class="brand_item"><a href="?brand=HIGHLINE">HIGHLINE</a></li>
+                                    </ul>
+                                </li>
+                                <li class="header-controller-left-item brand_big" style="font-size: 18px;" ><div class="">PRICE</div>
+                                    <ul class="brand_list">
+                                        <li class="brand_item"><a href="?price=HIGH TO LOW">HIGH TO LOW</a></li>
+                                        <li class="brand_item"><a href="?price=LOW TO HIGH">LOW TO HIGH</a></li>
+                                    </ul>
+                                </li>
 
                             </ul>
                         </div>
@@ -156,10 +187,11 @@
                                 </a>
                         </div>  
                 </div>
+                <!-- Search -->
                 <div class="header-search">
                         <div class="header-search-grap">
                             <input type="text" class="header-search-input" placeholder="Search here ...">
-                            <a href="./" class="header-search-icon">
+                            <a href="./?search" class="header-search-icon">
                                 <i class="fa-solid fa-magnifying-glass header-search-icons"></i>
                             </a>
                         </div>
@@ -174,7 +206,7 @@
                                 </div>
                                 <div class="header_cart_t">
                                     <div class="header_cart_t_1">CART</div>
-                                    <a href="?slug=view_cart">VIEW CART</a>
+                                    <a href="?route=view_cart">VIEW CART</a>
                                 </div>
                                 <div class="header_cart_contentt">
                                     
@@ -185,7 +217,7 @@
                                     <div class="header_cart_fs3" id="cart_price">$0.00</div>
                                 </div>
                                 <div class="cart_disable" style="display:none">
-                                 <a href="?route=shipping" class="header_cart_buy">Check Out</a>
+                                 <a href="?come=shipping" class="header_cart_buy">Check Out</a>
                                 </div>
                             </div>
                         </div>

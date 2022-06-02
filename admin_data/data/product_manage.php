@@ -7,7 +7,6 @@
         <thead>
             <tr>
                     <th class="col-lg-1" scope="col">Controller</th>
-                    <th class="col-lg-1" scope="col">Id</th>
                     <th class="col-lg-1" scope="col">Code_id</th>
                     <th class="col-lg-1" scope="col">Brands</th>
                     <th class="col-lg-1" scope="col">Name</th>
@@ -31,7 +30,6 @@
                         <a href="?delete='.$data[$i]['code_id'].'" style="color:white; background:#e68e2a; margin-right:5px;" class="btn btn_font" role="button" data-bs-toggle="button">Delete</a>
                         <a href="?update='.$data[$i]['code_id'].'" style="color:white; background:#e68e2a;" class="btn btn_font " role="button" data-bs-toggle="button">Edit</a>
                         </td>
-                        <td scope="col">'.$data[$i]['id'].'</td>
                         <td scope="col">'.$data[$i]['code_id'].'</td>
                         <td scope="col">'.$data[$i]['brand'].'</td>
                         <td scope="col">'.$data[$i]['name'].'</td>

@@ -9,11 +9,7 @@
 
         <div class="row d-flex justify-content-center">
                 
-<<<<<<< HEAD
             <div class="col-lg-6    ">
-=======
-            <div class="col-lg-6 sup_media">
->>>>>>> 33cb63903cc563ae2e255aec90cf3d266f78d191
                     <div class="content_sp_list_title content_sp_flex text-center mt-5 mb-2">COMMERCIAL ORDERS VS. CUSTOMER DIRECT ORDERS 
 
                         <i  class="fa-solid fa-plus clicklick"></i>

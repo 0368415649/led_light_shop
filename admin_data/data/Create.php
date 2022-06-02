@@ -33,8 +33,13 @@ if( isset($_POST['code_id_up']) ){
         echo'  <script>';
         echo' alert(" Updated Successfully ");';
         echo'</script>';
+        // header("location: ?routes=product_manage");
+
         }else{
-            echo "ERROR: ".  $conn->error; ;
+            echo'  <script>';
+            echo' alert("ERROR: '.  $conn->error.'");';
+            echo'</script>';
+           
          } 
     $code_up = $name_up=$name2_up=$image1_up=$image2_up=$riview_up=$description_up=$price_up=$categorize1_up=$atb1_up=$atb2_up=$atb3_up=$atb4_up="";
 }else{

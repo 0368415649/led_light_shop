@@ -3,10 +3,11 @@ include("../sql_connect.php");
 
 //  Delivered METHOUD
 if(isset($_GET["Delivered"])){
-    $sql ="UPDATE `order_aptech` SET `complete`='' where `id` = '".$_GET["Delivered"]."'  ";
+    $sql ="UPDATE `order_aptech` SET `complete`='ok' where `order_id` = '".$_GET["Delivered"]."'  ";
+    echo $sql;
     if( $conn->query($sql) === true){
         echo'  <script>';
-        echo' alert(" Delivered Successfully  ");';
+        echo' alert(" Delivered Successfully");';
         echo'</script>';
         header("location: ?routes=order_manage");
 
@@ -28,7 +29,9 @@ if(isset($_GET["delete"])){
         // header("location: admin.php?routes=product_  manage");
 
         }else{
-            echo "ERROR: ".  $conn->error; ;
+            echo'  <script>';
+            echo' alert("ERROR: Do not delete the product that has been tied");';
+            echo'</script>';
         }
  }
   //  DELETE COMMENT METHOUD
